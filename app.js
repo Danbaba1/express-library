@@ -13,12 +13,24 @@ var helmet = require('helmet');
 var app = express();
 app.use(helmet());
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://Danbaba:Danhumphrey1@cluster0.m14ygsb.mongodb.net/local_library?retryWrites=true&w=majority';
+/*var mongoDB = 'mongodb+srv://Danbaba1:Danhumphrey1@cluster0.zrhreg1.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(mongoDB, {useNewUrlParser: true,
 useUnifiedTopology: true});
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDbconnection error'));
-
+db.on('error', console.error.bind(console, 'MongoDbconnection error: '));*/
+mongoose.connect('mongodb+srv://Danbaba1:Danhumphrey1@cluster0.zrhreg1.mongodb.net/?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+},
+err => {
+  if (!err) {
+    console.log( '\nMongoDB ATLAS connection successful!!!\n' );
+  }
+  else {
+    console.log( `\nError in ATLAS DB connection: ${err.message} \n` );
+  }
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
